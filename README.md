@@ -1,3 +1,3 @@
-# MeuTCC1
+# MeuTCC2
 
-Meu TCC1 em LaTeX. 
+Meu TCC2 em LaTeX. 
