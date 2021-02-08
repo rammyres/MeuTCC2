@@ -55,7 +55,7 @@ Os blocos registros são blocos que contém as transações de criação de ende
 
 \section{RDVE Wallet}
 
-O primeiro aplicativo, desenvolvido em linguagem \textit{Dart} utilizando-se o \textit{framework Flutter} foi o \textit{\gls{wallet}} RDVE Wallet, que permite a identificação do usuário no sistema. 
+O primeiro aplicativo, desenvolvido em linguagem \textit{Dart} utilizando-se o \textit{framework Flutter} foi o \textit{\gls{wallet}} RDVE Wallet\footnote{Código fonte disponível em \url{https://github.com/rammyres/rdve_wallet}}, que permite a identificação do usuário no sistema. 
 
 O aplicativo possui um módulo principal, capaz de gerar e gerenciar chaves criptográficas que identificam o usuário. 
 
@@ -81,13 +81,15 @@ De forma similar, existem módulos para registro como operador de urna (mesário
 
 \begin{figure}[!htb]
 \centering
-\begin{minipage}{0.45\textwidth}%	
+\begin{minipage}{0.47\textwidth}%	
+	\centering
 	\includegraphics[width=.9\textwidth]{imagens/wallet_mesario}
 	\caption{Módulo de registro do operador de urna}
 	\label{fig:wallet_mesario}
 \end{minipage}
 \hfill
-\begin{minipage}{0.45\textwidth}%
+\begin{minipage}{0.47\textwidth}%
+	\centering
 	\includegraphics[width=.9\textwidth]{imagens/wallet_candidatura}
 	\caption{Módulo de registro de candidatura}
 	\label{fig:wallet_candidato}
@@ -95,7 +97,7 @@ De forma similar, existem módulos para registro como operador de urna (mesário
 \end{figure}
 \clearpage
 
-A comunicação com o sistema de coleta utiliza o mesmo princípio, gerando \gls{qr1} contendo os dados necessários ao cadastramento de operadores e candidatos. 
+A comunicação com o sistema de coleta utiliza o mesmo princípio, gerando \glspl{qr1} contendo os dados necessários ao cadastramento de operadores e candidatos. 
 
 Por fim o módulo de operação de urna permite que o mesário libere o alistamento eleitoral, o registro de candidatura e o voto. 
 
@@ -109,7 +111,7 @@ Por fim o módulo de operação de urna permite que o mesário libere o alistame
 
 \section{RDVE Coleta}
 
-O RDVE Coleta foi projetado como um amalgama de dois projetos separados, o RDVE Coleta em si e o RDVE Urna.
+O RDVE Coleta\footnote{Código fonte disponível em \url{https://github.com/rammyres/rdve_coleta}} foi projetado em Python como um amalgama de dois projetos separados, o RDVE Coleta em si e o RDVE Urna.
 
 \begin{figure}[h!]
 	\centering
@@ -118,12 +120,12 @@ O RDVE Coleta foi projetado como um amalgama de dois projetos separados, o RDVE 
 	\label{fig:coleta1}
 \end{figure}
 
-O RDVE Coleta registra eleitores e candidatos, bem como as requisições de votação, cédulas e os produtos de votação.
+O RDVE Coleta registra eleitores e candidatos, bem como as requisições de votação, cédulas e os produtos de votação. Cada voto registrado na urna é procedido por uma aleatorização da lista de cédulas e somente ao final os votos, novamente embaralhados, tem seus \glspl{hash1} incluídos na \gls{merkle}, impedindo que se possa recuperar a ordem de votação por meios indiretos. 
 
 \section{Resultados Obtidos}
 
 A partir da execução dos aplicativos descritos foi possível realizar votações simuladas sem participações de terceiros, em decorrência da pandemia mundial de COVID-19.
 
-Os registros representaram os dados inseridos e, em decorrência da forma de representação, mantiveram-se fidedignos e foi possível recuperar os estados através da persistência dos objetos descritos acima como texto em formato \gls{json}. Os arquivos de registro e produtos de votação compreendiam blocos íntegros e todos os seus registros tinham entradas em \glspl{merkle} que podiam ter provas efetivamente produzíveis. 
+Os registros representaram os dados inseridos e, em decorrência da forma de representação, mantiveram-se fidedignos e foi possível recuperar os estados registrados através da persistência dos objetos descritos acima como texto em formato \gls{json}. Os arquivos de registro e produtos de votação compreendiam blocos íntegros e todos os seus registros tinham entradas em sua \glspl{merkle} que podiam ter provas efetivamente produzíveis. 
 
 Nas simulações não foi possível recuperar a ordem da votação ou cruzar o voto com o eleitor que o produziu. Em inspeção manual também foi possível verificar que o UTXO tinha saldos compatíveis com as transações existentes nos blocos de produtos de votação. 
