@@ -23,9 +23,16 @@ No caso especifico do sistema RDVE a chave pública passa pelos seguintes algori
 	\item RIPEMD-160
 	\item a representação hexadecimal do sumário RIPEMD-160 recebe o prefixo 'x00'
 	\item Os quatro últimos dígitos do sumário SHA256 do item anterior é anexado ao final da \textit{string} formada pelo sumário RIPEMD-160 e o prefixo 'x00'
-	\item o resultado da ultima transformação é representado como uma numero Base 58.
-	
+	\item o resultado da ultima transformação é representado como um numero representado em Base 58 \cite{Nakamoto2019}	
 \end{itemize}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{imagens/fluxo_endereco}
+	\caption{Fluxograma de geração do endereço}
+	\label{fig:fluxo_endereco}
+\end{figure}
+%\clearpage
 
 Em protocolos como o Bitcoin a chave pública não é divulgada fora das \textit{wallets}, em decorrência da possibilidade de, no futuro, a utilização do Algoritmo de Shor permita a obtenção da chave privada a partir da chave pública \cite{Mavroeidis2018}. 
 
@@ -37,11 +44,11 @@ O Saldo de Transações Não-Gasto (UTXO) é uma lista, composta por todos os en
 
 \subsection{Assinatura por delegação}
 
-Assim como as chaves, o endereço identifica os usuários em uma rede \textit{blockchain}, mas, no caso especifico deste trabalho, também identifica as urnas, permitindo que os eleitores transfiram seus saldos de votos para elas, permitindo que as urnas assinem as cédulas virtuais de votação no momento da coleta dos votos. 
+Assim como as chaves, o endereço identifica os usuários em uma rede \textit{blockchain}, mas, no caso especifico deste trabalho, também identifica as urnas, permitindo que os eleitores transfiram seus saldos de votos para elas, permitindo que as urnas assinem as cédulas virtuais de votação no momento da coleta dos votos, desta forma as urnas recebem a delegação dos usuários para assinarem as cédulas, ocultando os dados dos votantes.
 
 \subsection{Bloco Registros}
 
-Os blocos registros são blocos que contém as transações de criação de endereço, funcionando de forma similar a um banco de dados contendo endereços de todos os participantes da rede, incluindo ID dos eleitores, mesários e urnas (gerados a partir do algoritmo UUID4), nomes dos eleitores, apelidos e números dos candidatos. 
+Os blocos registros são blocos que contém as transações de criação de endereços, funcionando de forma similar a um banco de dados contendo endereços de todos os participantes da rede, incluindo ID dos eleitores, mesários e urnas (gerados a partir do algoritmo UUID4), nomes dos eleitores, apelidos e números dos candidatos. 
 
 \subsection{Cédula}
 É a abstração de uma cédula em papel, contendo campos específicos para assinatura (produzida pela urna) e o endereço de destino, referente ao candidato votado.
@@ -68,7 +75,7 @@ O aplicativo possui um módulo principal, capaz de gerar e gerenciar chaves crip
 \clearpage
 
 
-A ID do eleitor identifica o mesmo dentro de todo o sistema, inclusive quado o mesmo se candidatar a cargo eletivo. Uma vez registrado no sistema o usuário pode requerer seu alistamento como eleitor, utilizado o módulo alistamento.
+A ID do eleitor identifica o mesmo dentro de todo o sistema, inclusive quado o mesmo se candidatar a cargo eletivo. Uma vez registrado no sistema o usuário pode requerer seu alistamento como eleitor, utilizado o módulo alistamento do aplicativo RDVE Coleta. Os dados são codificados como um objeto \gls{json}, contendo os dados necessários ao registro do usuário e apresentados como um \gls{qr1} que pode ser lido por outros dispositivos de modo \textit{offline}. 
 
 \begin{figure}[!htb]
 	\centering
@@ -121,6 +128,16 @@ O RDVE Coleta\footnote{Código fonte disponível em \url{https://github.com/ramm
 \end{figure}
 
 O RDVE Coleta registra eleitores e candidatos, bem como as requisições de votação, cédulas e os produtos de votação. Cada voto registrado na urna é procedido por uma aleatorização da lista de cédulas e somente ao final os votos, novamente embaralhados, tem seus \glspl{hash1} incluídos na \gls{merkle}, impedindo que se possa recuperar a ordem de votação por meios indiretos. 
+
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{imagens/fluxo_dados}
+	\caption{Fluxo dos dados no sistema RDVE Coleta}
+	\label{fig:fluxo_dados}
+\end{figure}
+
 
 \section{Resultados Obtidos}
 

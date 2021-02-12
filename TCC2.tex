@@ -79,7 +79,10 @@
 \usepackage[table,xcdraw]{xcolor} % Permite a colorizaão da tabela do cronograma
 \usepackage{lscape} % Permite a impressão de páginas em modo paisagem 
 \usepackage{hyperref}
+\hypersetup{breaklinks=true}
 \usepackage{diagbox}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
 
 % --- 
 % CONFIGURAÇÕES DE PACOTES
@@ -283,6 +286,7 @@
 % ---
 %\pdfbookmark[0]{\listtablename}{lot}
 %\listoftables*
+\listoffigures*
 \cleardoublepage
 % ---
 
@@ -387,7 +391,10 @@
 
 % O que for incluido por aqui até o end serão os aprendices
 
+\include{postextuais/apendice1}
+
 \end{apendicesenv}
+\apendices
 % ---
 
 
