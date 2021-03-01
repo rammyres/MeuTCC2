@@ -42,6 +42,7 @@
 	french,				% idioma adicional para hifenização
 	spanish,			% idioma adicional para hifenização
 	brazil,				% o último idioma é o principal do documento
+	chapter=TITLE,
 	]{abntex2}
 	
 % ---
@@ -81,6 +82,7 @@
 \usepackage{hyperref}
 \hypersetup{breaklinks=true}
 \usepackage{diagbox}
+\usepackage{pdfpages}
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
 
@@ -124,8 +126,8 @@
 	   
 	    \vfill
 	    \begin{vplace}[0.2]
-	    \textbf
-		    {\large{MONOGRAFIA}}
+%	    \textbf
+%		    {\large{MONOGRAFIA}}
 %	    \vspace*{1.0cm}
 		\vfill
 		\textbf{\center\LARGE\imprimirtitulo}
@@ -172,9 +174,9 @@
   \SingleSpacing
   \imprimirpreambulo
   \par
-  \vspace{1cm}
-  \imprimirorientadorRotulo~\imprimirorientador\par
-  \imprimircoorientadorRotulo~\imprimircoorientador
+%  \vspace{1cm}
+%  \imprimirorientadorRotulo~\imprimirorientador\par
+%  \imprimircoorientadorRotulo~\imprimircoorientador
   \end{minipage}%
   \vspace*{\fill}
 }%
@@ -266,7 +268,8 @@
 %\imprimirfolhaderosto
 \frostoUFPI
 % ---
-\include{pretextuais/folha_de_aprovacao}
+%\include{pretextuais/folha_de_aprovacao}
+\includepdf[pages=-]{pretextuais/ata.pdf}
 % ---
 % NOTA DA ABNT NBR 15287:2011, p. 4:
 %  ``Se exigido pela entidade, apresentar os dados curriculares do autor em
